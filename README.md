@@ -1,6 +1,6 @@
 # tugboat: Integrate containers in your backup workflow
 
-[![Build Status](https://travis-ci.org/xvello/tugboat-backups.svg?branch=master)](https://travis-ci.org/xvello/tugboat-backups)
+[![Build Status](https://travis-ci.org/xvello/tugboat-backups.svg?branch=master)](https://travis-ci.org/xvello/tugboat-backups) [![PyPI version](https://badge.fury.io/py/tugboat-backups.svg)](https://badge.fury.io/py/tugboat-backups)
 
 When running a docker mono-node, it is non-trivial to reliably backup the datastores runing in containers:
 
@@ -42,23 +42,23 @@ For safety reasons, file path will not be allowed to escape the specified folder
 ```
 "tugboat.pre_command" = "vacuumdb --all --analyze"
 "tugboat.bkp_command" = "sh -c 'pg_dumpall | gzip'"
-"tugboat.filename" = "psql.dump.gz"
+"tugboat.filename"    = "psql.dump.gz"
 ```
 
 ### Consul
 
 ```
 "tugboat.bkp_command" = "sh -c 'consul kv export | gzip'"
-"tugboat.filename" = "consul.dump.gz"
+"tugboat.filename"    = "consul.dump.gz"
 ```
 
 ### Redis
 
 ```
-"tugboat.pre_command" = "redis-cli save"
-"tugboat.bkp_command" = "gzip -c dump.rdb"
+"tugboat.pre_command"  = "redis-cli save"
+"tugboat.bkp_command"  = "gzip -c dump.rdb"
 "tugboat.post_command" = "rm --force dump.rdb"
-"tugboat.filename" = "redis-rspamd.dump.gz"
+"tugboat.filename"     = "redis-rspamd.dump.gz"
 ```
 
 On a very low traffic redis server (rspamd persistence), the synchronous `save` can be used. For production databases, the asynchronous `bgsave` command should be used instead.
