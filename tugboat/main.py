@@ -1,13 +1,15 @@
 import click
 
 from .docker import discover_containers, exec_in_container
-from .utils import build_file_path
+from .utils import build_file_path, ensure_unique_filenames
 
 
 @click.command()
 @click.argument("path")
 def cli(path):
     found = discover_containers()
+    ensure_unique_filenames(found)
+
     if not found:
         click.echo("No container found")
         return

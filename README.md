@@ -1,5 +1,7 @@
 # tugboat: Integrate containers in your backup workflow
 
+[![Build Status](https://travis-ci.org/xvello/tugboat-backups.svg?branch=master)](https://travis-ci.org/xvello/tugboat-backups)
+
 When running a docker mono-node, it is non-trivial to reliably backup the datastores runing in containers:
 
 - there is no `cron` running in the containers to create regular snapshots

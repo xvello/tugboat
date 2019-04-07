@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="tugboat-backups",
-    version="0.1",
+    version="0.2.0",
     author="Xavier Vello",
     author_email="xavier.vello@gmail.com",
     description="Integrate containers in your backup workflow",
