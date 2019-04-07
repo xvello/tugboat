@@ -50,7 +50,7 @@ ls: /does/not/exit: No such file or directory
         """
         )
     assert not os.path.exists(f)
-    assert len(os.listdir(tmp_path)) == 0
+    assert len(os.listdir(str(tmp_path))) == 0
 
 
 def test_exec_ok_stream_text(container, tmp_path):
@@ -64,7 +64,7 @@ def test_exec_ok_stream_text(container, tmp_path):
 
     # Check we only have one file (temp file removed)
     assert os.path.exists(f)
-    assert len(os.listdir(tmp_path)) == 1
+    assert len(os.listdir(str(tmp_path))) == 1
 
     # Check file contents
     with open(f, "r") as file:
@@ -83,7 +83,7 @@ def test_exec_ok_stream_binary(container, tmp_path):
     exec_in_container(container.id, "cat /bin/busybox", f)
 
     assert os.path.exists(f)
-    assert len(os.listdir(tmp_path)) == 1
+    assert len(os.listdir(str(tmp_path))) == 1
 
     sha256_hash = hashlib.sha256()
     with open(f, "rb") as file:
