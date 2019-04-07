@@ -1,0 +1,31 @@
+version: '2'
+services:
+  not-running--no:
+    image: "alpine:3.9"
+    command: "true"
+    labels:
+        tugboat.bkp_command: "cmd"
+        tugboat.filename: "file"
+  no-labels--no: &base
+    image: "alpine:3.9"
+    command: "tail -f /dev/null"
+  all-annotations--yes:
+    <<: *base
+    labels:
+        tugboat.pre_command: "/my/pre/command"
+        tugboat.bkp_command: "/my/bkp/command with args"
+        tugboat.post_command: "/my/post/command"
+        tugboat.filename: "redis-backup.gz"
+  no-filename--no:
+    <<: *base
+    labels:
+        tugboat.bkp_command: "/my/bkp/command with args"
+  no-command--no:
+    <<: *base
+    labels:
+        tugboat.filename: "redis-backup.gz"
+  required-annotations--yes:
+    <<: *base
+    labels:
+        tugboat.bkp_command: "/my/bkp/command with args"
+        tugboat.filename: "redis-backup.gz"
